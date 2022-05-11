@@ -8,7 +8,7 @@
     <div class="mt-4 page-container">
       <div class="rtl right-container">
         <p class="subtitle-size-2">بر اساس 875,054 معامله صورت گرفته</p>
-        <div class="chipsContainer">
+        <div>
           <selected-chip
             v-if="step >= 2"
             :name="selectedBrand.name || ''"
@@ -220,6 +220,10 @@ export default {
     flex-flow: column;
     justify-content: flex-start;
   }
+  .left-container {
+    max-height: 50px;
+    text-align: justify;
+  }
 }
 @media only screen and (min-width: 601px) {
   .page-container {
@@ -242,8 +246,5 @@ export default {
     display: flex;
     flex-flow: row-reverse;
   }
-}
-.chipsContainer {
-  /* background-color: red; */
 }
 </style>
