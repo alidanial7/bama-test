@@ -1,13 +1,18 @@
 <template>
   <div class="container">
-    <div class="rtl">
-      <span class="bold">ماشین حساب | </span>
+    <div class="rtl title-container">
+      <span class="bold">ماشین حساب </span>
+      <span class="bold show"> | </span>
       <span>محاسبه قیمت خودرو کارکرده</span>
     </div>
 
     <div class="mt-4 page-container">
       <div class="rtl right-container">
-        <p class="subtitle-size-2">بر اساس 875,054 معامله صورت گرفته</p>
+        <p class="subtitle-size-2">
+          بر اساس
+          <span class="bold" style="color: #b0549a">875,054</span>
+          معامله صورت گرفته
+        </p>
         <div>
           <selected-chip
             v-if="step >= 2"
@@ -29,7 +34,7 @@
             :name="selectedYear.name || ''"
             @remove="removeCarYear"
           />
-          <p class="subtitle-size-2">کارکرد</p>
+          <p class="subtitle-size-2 show">کارکرد</p>
           <selected-chip
             v-if="step >= 5"
             :name="`${selectedDistance} کیلومتر`"
@@ -38,7 +43,7 @@
         </div>
       </div>
       <div class="left-container rtl">
-        <p>{{ title }}</p>
+        <p class="bold">{{ title }}</p>
         <select-list
           v-if="step === 1"
           :list-items="carBrands"
@@ -223,6 +228,14 @@ export default {
   .left-container {
     max-height: 50px;
     text-align: justify;
+  }
+  .show {
+    display: none;
+  }
+  .title-container {
+    display: flex;
+    flex-flow: column;
+    align-items: center;
   }
 }
 @media only screen and (min-width: 601px) {

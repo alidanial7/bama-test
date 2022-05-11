@@ -45,16 +45,25 @@ export default {
 </script>
 
 <style>
-.search-container-column {
-  display: flex;
-  flex-direction: column;
-  flex-wrap: wrap;
-  justify-content: flex-start;
-  align-items: stretch;
-  height: 450px;
-  align-items: self-start;
-  flex-grow: 1;
+@media only screen and (max-width: 600px) {
+  .search-container-column {
+    display: flex;
+    flex-direction: column;
+  }
 }
+@media only screen and (min-width: 601) {
+  .search-container-column {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    align-items: stretch;
+    height: 450px;
+    align-items: self-start;
+    flex-grow: 1;
+  }
+}
+
 .search-container-row {
   display: flex;
   flex-direction: row;
