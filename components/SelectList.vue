@@ -1,10 +1,29 @@
 <template>
-  <ul
+  <div>
+    <ul v-if="hasHeader" class="search-container-column pa-0">
+      <li
+        v-for="listItem in listItems"
+        :key="listItem.id"
+        :class="listItem.isHeader ? 'search-item-start' : 'search-item-column'"
+        @click="select(listItem)"
+      >
+        {{ listItem.name }}
+      </li>
+    </ul>
+    <ul v-else class="search-container-row pa-0">
+      <span v-for="listItem in listItems" :key="listItem.id" style="width: 20%">
+        <li class="search-item-column" @click="select(listItem)">
+          {{ listItem.name }}
+        </li>
+      </span>
+    </ul>
+  </div>
+  <!-- <ul
     :class="
       hasHeader ? 'search-container-column pa-0' : 'search-container-row pa-0'
     "
-  >
-    <li
+  > -->
+  <!-- <li
       v-for="listItem in listItems"
       :key="listItem.id"
       :class="
@@ -19,8 +38,14 @@
       <span>
         {{ listItem.name }}
       </span>
-    </li>
-  </ul>
+    </li> -->
+
+  <!-- <span v-for="listItem in listItems" :key="listItem.id" class="test1">
+      <li @click="select(listItem)">
+        {{ listItem.name }}
+      </li>
+    </span>
+  </ul> -->
 </template>
 
 <script>
@@ -111,5 +136,9 @@ export default {
   border: 1px solid #06bdb3;
   border-radius: 5px;
   padding: 9px;
+}
+
+.test1 {
+  width: 20%;
 }
 </style>
