@@ -5,24 +5,37 @@
       <span>محاسبه قیمت خودرو کارکرده</span>
     </div>
 
-    <div class="mt-4" style="display: flex; flex-flow: row-reverse">
+    <div class="mt-4 page-container">
       <div class="rtl right-container">
         <p class="subtitle-size-2">بر اساس 875,054 معامله صورت گرفته</p>
-        <selected-chip
-          v-if="step >= 2"
-          :name="selectedBrand.name || ''"
-          @remove="removeCarBrand"
-        />
-        <selected-chip
-          v-if="step >= 3"
-          :name="selectedModel.name || ''"
-          @remove="removeCarModel"
-        />
-        <selected-chip
-          v-if="step >= 4"
-          :name="selectedTrim.name || ''"
-          @remove="removeCarTrim"
-        />
+        <div class="chipsContainer">
+          <selected-chip
+            v-if="step >= 2"
+            :name="selectedBrand.name || ''"
+            @remove="removeCarBrand"
+          />
+          <selected-chip
+            v-if="step >= 3"
+            :name="selectedModel.name || ''"
+            @remove="removeCarModel"
+          />
+          <selected-chip
+            v-if="step >= 4"
+            :name="selectedTrim.name || ''"
+            @remove="removeCarTrim"
+          />
+          <selected-chip
+            v-if="step >= 5"
+            :name="selectedYear.name || ''"
+            @remove="removeCarYear"
+          />
+          <p class="subtitle-size-2">کارکرد</p>
+          <selected-chip
+            v-if="step >= 5"
+            :name="`${selectedDistance} کیلومتر`"
+            @remove="removeCarDistance"
+          />
+        </div>
       </div>
       <div class="left-container rtl">
         <p>{{ title }}</p>
@@ -47,21 +60,33 @@
           @select="selectTrim"
         />
 
-        <range-input
+        <select-list
           v-if="step === 4"
+          :list-items="carYears"
+          :has-header="false"
+          @select="selectYear"
+        />
+
+        <range-input
+          v-if="step === 5"
+          v-model="selectedDistance"
           :min="0"
           :max="210000"
           :step="100"
-          :default-value="1000"
         />
-        <ul>
-          <li>
-            قیمت خودروها بر اساس پایش، تجمیع و تحلیل قیمت های اعلام شده از سور
-            نمایندگی ها، قیمت معاملات انجام شده در بیش از 150 نمایشگاه فعال سطح
-            کشور و مراکز خرید و فروش پایتخت و نیز بررسی های میدانی در بازار
-            خودرو به صورت روزانه استخراج میشود.
-          </li>
-        </ul>
+        <div v-if="step === 5" class="button-container">
+          <theme-button text="ادامه" />
+        </div>
+        <div>
+          <ul>
+            <li>
+              قیمت خودروها بر اساس پایش، تجمیع و تحلیل قیمت های اعلام شده از سور
+              نمایندگی ها، قیمت معاملات انجام شده در بیش از 150 نمایشگاه فعال
+              سطح کشور و مراکز خرید و فروش پایتخت و نیز بررسی های میدانی در
+              بازار خودرو به صورت روزانه استخراج میشود.
+            </li>
+          </ul>
+        </div>
       </div>
     </div>
   </div>
@@ -72,19 +97,23 @@ import cars from "../data/cars";
 import RangeInput from "../components/RangeInput.vue";
 import SelectedChip from "../components/SelectedChip.vue";
 import SelectList from "~~/components/SelectList.vue";
+import ThemeButton from "~~/components/ThemeButton.vue";
 
 export default {
-  components: { RangeInput, SelectedChip, SelectList },
+  components: { RangeInput, SelectedChip, SelectList, ThemeButton },
   data() {
     return {
       step: 1,
       carBrands: [],
       carModels: [],
       carTrims: [],
+      carYears: [],
 
       selectedBrand: null,
       selectedModel: null,
       selectedTrim: null,
+      selectedYear: null,
+      selectedDistance: "10000",
     };
   },
   computed: {
@@ -98,10 +127,11 @@ export default {
           return "تریم خودرو را انتخاب کنید:";
         case 4:
           return "سال تولید خودرو را انتخاب کنید:";
+        case 5:
+          return "کارکرد خودرو را وارد کنید:";
 
         default:
           return "";
-          break;
       }
     },
   },
@@ -137,37 +167,83 @@ export default {
     },
     selectTrim(trim) {
       this.selectedTrim = trim;
+      this.carYears = this.selectedTrim.years;
       this.step = 4;
+    },
+    selectYear(year) {
+      this.selectedYear = year;
+      this.step = 5;
     },
     removeCarBrand() {
       this.selectedBrand = null;
       this.selectedModel = null;
       this.selectedTrim = null;
+      this.selectedYear = null;
       this.step = 1;
     },
     removeCarModel() {
       this.selectedModel = null;
       this.selectedTrim = null;
+      this.selectedYear = null;
       this.step = 2;
     },
     removeCarTrim() {
       this.selectedTrim = null;
+      this.selectedYear = null;
       this.step = 3;
+    },
+    removeCarYear() {
+      this.selectedYear = null;
+      this.step = 4;
+    },
+    removeCarDistance() {
+      this.selectedYear = null;
+      this.selectedDistance = "10000";
+      this.step = 4;
     },
   },
 };
 </script>
 <style>
-.right-container {
-  width: 20%;
-  border-left: 1px solid rgb(191, 191, 191);
-  text-align: justify;
-  padding: 10px;
+@media only screen and (max-width: 600px) {
+  .page-container {
+    display: flex;
+    flex-flow: column;
+  }
+  .right-container {
+    width: 100%;
+    text-align: justify;
+  }
+  .range-input-container {
+    direction: ltr;
+    display: flex;
+    flex-flow: column;
+    justify-content: flex-start;
+  }
 }
-.left-container {
-  width: 80%;
-  padding: 10px;
-  min-height: 50px;
-  text-align: justify;
+@media only screen and (min-width: 601px) {
+  .page-container {
+    display: flex;
+    flex-flow: row-reverse;
+  }
+  .right-container {
+    width: 20%;
+    border-left: 1px solid rgb(191, 191, 191);
+    text-align: justify;
+    padding: 10px;
+  }
+  .left-container {
+    width: 80%;
+    padding: 10px;
+    min-height: 50px;
+    text-align: justify;
+  }
+  .button-container {
+    display: flex;
+    flex-flow: row-reverse;
+  }
+}
+.chipsContainer {
+  /* background-color: red; */
 }
 </style>

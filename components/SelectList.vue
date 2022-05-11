@@ -90,9 +90,9 @@ export default {
   border-radius: 5px;
   padding: 9px;
 }
-.search-item-row > span:hover {
+.search-item-row:hover {
   border: 1px solid #06bdb3;
   border-radius: 5px;
-  padding: 10px;
+  padding: 9px;
 }
 </style>

@@ -1,16 +1,22 @@
 <template>
   <div class="range-input-container">
     <div class="number-box-container">
-      <input v-model="modelValue" type="number" class="bold subtitle-size" />
+      <input
+        :value="modelValue"
+        type="number"
+        class="bold subtitle-size"
+        @input="$emit('update:modelValue', $event.target.value)"
+      />
       <span class="black-color bold subtitle-size ml-2">km</span>
     </div>
     <div>
       <input
-        v-model="modelValue"
         type="range"
         :min="min"
         :max="max"
         :step="step"
+        :value="modelValue"
+        @input="$emit('update:modelValue', $event.target.value)"
       />
       <div class="box-minmax gray-color">
         <span>{{ min }} km</span><span>{{ max }} km</span>
@@ -30,10 +36,10 @@ export default {
       type: Number,
       required: true,
     },
-    defaultValue: {
-      type: Number,
+    modelValue: {
+      type: String,
       required: false,
-      default: 0,
+      default: "0",
     },
     step: {
       type: Number,
@@ -41,15 +47,31 @@ export default {
       default: 1,
     },
   },
+  emits: ["update:modelValue"],
   data: () => {
-    return {
-      modelValue: "10000",
-    };
+    return {};
   },
+  methods: {},
 };
 </script>
 
 <style>
+@media only screen and (max-width: 600px) {
+  input[type="range"] {
+    width: 100%;
+  }
+  .box-minmax {
+    width: 100%;
+  }
+}
+@media only screen and (min-width: 601px) {
+  input[type="range"] {
+    width: 50%;
+  }
+  .box-minmax {
+    width: 50%;
+  }
+}
 .range-input-container {
   direction: ltr;
   height: 450px;
@@ -78,7 +100,6 @@ input[type="range"] {
   display: block;
   -webkit-appearance: none;
   background-color: #bdc3c7;
-  width: 50%;
   height: 5px;
   border-radius: 5px;
   margin: 0 auto;
@@ -97,7 +118,6 @@ input[type="range"]::-webkit-slider-thumb {
 
 .box-minmax {
   margin: 10px auto;
-  width: 50%;
   display: flex;
   justify-content: space-between;
   font-size: 20px;
