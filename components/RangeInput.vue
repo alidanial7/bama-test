@@ -63,6 +63,13 @@ export default {
   .box-minmax {
     width: 100%;
   }
+  .range-input-container {
+    direction: ltr;
+    height: auto;
+    display: flex;
+    flex-flow: column;
+    justify-content: space-evenly;
+  }
 }
 @media only screen and (min-width: 601px) {
   input[type="range"] {
@@ -71,13 +78,13 @@ export default {
   .box-minmax {
     width: 50%;
   }
-}
-.range-input-container {
-  direction: ltr;
-  height: 450px;
-  display: flex;
-  flex-flow: column;
-  justify-content: space-evenly;
+  .range-input-container {
+    direction: ltr;
+    height: 450px;
+    display: flex;
+    flex-flow: column;
+    justify-content: space-evenly;
+  }
 }
 
 input[type="number"] {

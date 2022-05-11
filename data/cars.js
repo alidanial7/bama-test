@@ -5,7 +5,7 @@ const cars = [
     brands: [
       {
         id: 1,
-        name: "بی ام وه",
+        name: "بی ام و",
         models: [
           {
             id: 1,

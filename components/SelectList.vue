@@ -49,9 +49,22 @@ export default {
   .search-container-column {
     display: flex;
     flex-direction: column;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    align-items: stretch;
+    align-items: self-start;
+  }
+  .search-container-row {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    align-items: stretch;
+    height: 150px;
+    align-items: self-start;
   }
 }
-@media only screen and (min-width: 601) {
+@media only screen and (min-width: 601px) {
   .search-container-column {
     display: flex;
     flex-direction: column;
@@ -60,23 +73,20 @@ export default {
     align-items: stretch;
     height: 450px;
     align-items: self-start;
-    flex-grow: 1;
+  }
+  .search-container-row {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    align-items: stretch;
+    height: 450px;
+    align-items: self-start;
   }
 }
 
-.search-container-row {
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  justify-content: flex-start;
-  align-items: stretch;
-  height: 450px;
-  align-items: self-start;
-  flex-grow: 1;
-}
 .search-item-start {
   padding: 10px;
-  flex-grow: 1;
   color: #06bdb3;
   list-style-position: inside;
   font-weight: bold;
@@ -84,11 +94,9 @@ export default {
 .search-item-column {
   padding: 10px;
   margin: 5px;
-  flex-grow: 1;
   list-style: none;
 }
 .search-item-row {
-  flex-grow: 1;
   padding: 10px;
   max-width: 25%;
   margin: 5px;
