@@ -1,7 +1,12 @@
 <template>
   <div class="selectedInfoContainer">
     <span>{{ name }}</span>
-    <img src="/icons/close.svg" alt="close_icon" @click="$emit('remove')" />
+    <img
+      src="/icons/close.svg"
+      alt="close_icon"
+      @click="$emit('remove')"
+      class="closeIcon"
+    />
   </div>
 </template>
 
@@ -25,5 +30,11 @@ export default {
   justify-content: space-between;
   background-color: rgb(235, 235, 235);
   margin: 5px 0px;
+}
+.selectedInfoContainer:hover {
+  background-color: rgb(219, 218, 218);
+}
+.closeIcon:hover {
+  cursor: pointer;
 }
 </style>

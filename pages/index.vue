@@ -10,7 +10,9 @@
       <div class="rtl right-container">
         <p class="subtitle-size-2">
           بر اساس
-          <span class="bold" style="color: #b0549a">875,054</span>
+          <span class="bold" style="color: #b0549a">{{
+            numberOfTrades.toLocaleString()
+          }}</span>
           معامله صورت گرفته
         </p>
         <div>
@@ -117,6 +119,8 @@ export default {
       selectedTrim: null,
       selectedYear: null,
       selectedDistance: "10000",
+
+      numberOfTrades: 875054,
     };
   },
   computed: {

@@ -18,34 +18,6 @@
       </span>
     </ul>
   </div>
-  <!-- <ul
-    :class="
-      hasHeader ? 'search-container-column pa-0' : 'search-container-row pa-0'
-    "
-  > -->
-  <!-- <li
-      v-for="listItem in listItems"
-      :key="listItem.id"
-      :class="
-        hasHeader
-          ? listItem.isHeader
-            ? 'search-item-start'
-            : 'search-item-column'
-          : 'search-item-row'
-      "
-      @click="select(listItem)"
-    >
-      <span>
-        {{ listItem.name }}
-      </span>
-    </li> -->
-
-  <!-- <span v-for="listItem in listItems" :key="listItem.id" class="test1">
-      <li @click="select(listItem)">
-        {{ listItem.name }}
-      </li>
-    </span>
-  </ul> -->
 </template>
 
 <script>

@@ -18,8 +18,9 @@
         :value="modelValue"
         @input="$emit('update:modelValue', $event.target.value)"
       />
-      <div class="box-minmax gray-color">
-        <span>{{ min }} km</span><span>{{ max }} km</span>
+      <div class="box-minmax">
+        <span>{{ min.toLocaleString() }} km</span
+        ><span>{{ max.toLocaleString() }} km</span>
       </div>
     </div>
   </div>
@@ -73,10 +74,10 @@ export default {
 }
 @media only screen and (min-width: 601px) {
   input[type="range"] {
-    width: 50%;
+    width: 70%;
   }
   .box-minmax {
-    width: 50%;
+    width: 70%;
   }
   .range-input-container {
     direction: ltr;
@@ -89,6 +90,7 @@ export default {
 
 input[type="number"] {
   -webkit-appearance: none;
+
   background-color: #ffffff;
   width: 120px;
   height: 35px;
@@ -127,7 +129,8 @@ input[type="range"]::-webkit-slider-thumb {
   margin: 10px auto;
   display: flex;
   justify-content: space-between;
-  font-size: 20px;
+  font-size: 17px;
+  color: #9da1a4;
 }
 
 .number-box-container {
@@ -135,5 +138,9 @@ input[type="range"]::-webkit-slider-thumb {
   justify-content: center;
   margin: 20px auto;
   align-items: center;
+}
+
+.black-color {
+  color: #000;
 }
 </style>
